@@ -1,0 +1,19 @@
+{
+  "name": "git_auto_commit",
+  "version": "1.0.0",
+  "description": "Auto Commit daily on github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdityaTrivedi14/git_auto_commit.git"
+  },
+  "author": "Aditya Trivedi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdityaTrivedi14/git_auto_commit/issues"
+  },
+  "homepage": "https://github.com/AdityaTrivedi14/git_auto_commit#readme"
+}
