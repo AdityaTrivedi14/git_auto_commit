@@ -1,15 +1,52 @@
-const moment = require('moment');
+const moment = require("moment");
+const simpleGit = require("simple-git");
+const jsonfile = require("jsonfile");
 
-// Get the current date and time
-const currentDateTime = moment();
+const git = simpleGit();
 
-// Set the time to midnight (start of next day)
-const nextDayDateTime = currentDateTime.add(1, 'days').startOf('day');
+const file = "./data.json";
 
-// Format the date and time 
-const formattedNextDay = nextDayDateTime.format('YYYY-MM-DDTHH:mm:ss');
+function gitAutoCommit() {
+  try {
+    // Get the current date and time
+    const currentDateTime = moment();
+    // Set the time to midnight (start of next day)
+    const testDate = currentDateTime.subtract(5, "days").format() // this is for testing
+    const nextDayDateTime = currentDateTime.add(1, "days").startOf("day");
+    // Format the date and time
+    const formattedNextDay = nextDayDateTime.format("YYYY-MM-DDTHH:mm:ss");
 
-console.log(formattedNextDay);
+    console.log(formattedNextDay);
+    console.log(testDate);
+
+    let streakDay = 0;
+
+    const obj = {
+      commitDate: testDate, // testDate to be replaced after testing
+      streak: streakDay,
+    };
+
+    jsonfile.writeFile(file, obj, () => {
+        try {
+          // Add all changes
+          git.add(file);
+          // Commit with a message
+          git.commit("test commit", { "--date": testDate });  // commit date will also be changed
+          // Push the changes
+          git.push("origin", "main");
+
+          console.log("Changes committed and pushed successfully");
+        } catch (error) {
+          console.error("Error occurred in jsonfile.writeFile", error);
+        }
+    });
+
+  } catch (error) {
+    console.error("Error occurred in gitAutoCommit()", error);
+  }
+}
+
+gitAutoCommit()
 
 // - git commit --date="YYYY-MM-DDTHH:MM:SS" to commit on particular date
 
