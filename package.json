@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AdityaTrivedi14/git_auto_commit/issues"
   },
-  "homepage": "https://github.com/AdityaTrivedi14/git_auto_commit#readme"
+  "homepage": "https://github.com/AdityaTrivedi14/git_auto_commit#readme",
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
 }
